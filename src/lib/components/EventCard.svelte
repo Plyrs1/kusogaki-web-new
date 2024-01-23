@@ -1,7 +1,8 @@
 <script lang="ts">
   import type { EventData } from './event';
   export let data: EventData;
-  const formatDate = (date: Date) => {
+  const formatDate = (date: number) => {
+    const dateObj = new Date(date)
     const ordinal = (day: number) => {
       if (day > 3 && day < 21) return 'th';
       switch (day % 10) {
@@ -15,7 +16,7 @@
           return 'th';
       }
     };
-    return `${date.toLocaleDateString('en-us', { day: 'numeric', month: 'long' })}${ordinal(date.getDay())}`;
+    return `${dateObj.toLocaleDateString('en-us', { day: 'numeric', month: 'long' })}${ordinal(dateObj.getDate())}`;
   };
 </script>
 

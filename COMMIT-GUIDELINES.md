@@ -52,5 +52,12 @@ build: change static file build configuration
 
 sveltekit now will build static .html files instead of dynamic routing
 ```
+Or if your commit has multiple feature, put the most important detail at the header, then the other one in body
+```
+feat: add login button
+
+fix: home page scroll
+docs: add credits
+```
 
 > Taken from https://github.com/angular/angular/blob/main/CONTRIBUTING.md

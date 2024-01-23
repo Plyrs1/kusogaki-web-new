@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config}*/
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 const config = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
 
@@ -7,6 +9,11 @@ const config = {
       center: true
     },
     extend: {
+      fontFamily: {
+        sans: ['Monsterrat', ...defaultTheme.fontFamily.sans],
+        'lemon-milk': ['Lemon\\ Milk'],
+        'kozuka-gothic': ['Kozuka\\ Gothic']
+      },
       colors: {
         kusogaki: {
           purple: '#B38DD9',

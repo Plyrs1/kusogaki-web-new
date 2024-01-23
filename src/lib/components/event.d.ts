@@ -1,6 +1,6 @@
 interface EventData {
   title: string;
-  date: Date;
+  date: number;
   image: string;
 }
 

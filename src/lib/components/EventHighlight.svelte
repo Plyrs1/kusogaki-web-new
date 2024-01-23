@@ -3,7 +3,7 @@
 
   import type { EventData } from './event';
   export let data: EventData;
-  let countdown = data.date.getTime() - new Date().getTime();
+  let countdown = new Date(data.date).getTime() - new Date().getTime();
   const pluralize = (day: number) => {
     return day > 1 ? 'days' : 'day';
   };
@@ -21,7 +21,7 @@
     return `${d > 0 ? `${d} ${pluralize(d)},` : ''} ${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
   };
   const interval = setInterval(() => {
-    countdown = (data?.date?.getTime() || 0) - new Date().getTime();
+    countdown = (new Date(data?.date).getTime() || 0) - new Date().getTime();
     if (countdown > 0) return;
     countdown = 0;
     clearInterval(interval);

@@ -13,8 +13,13 @@ pnpm i
 # start dev server
 pnpm dev
 
-# tidy up
+# check code formatting
 pnpm lint
+
+# before sending pull request, format your code using
+pnpm format
+# you'll not be able to commit your change if it's not
+# formatted yet
 ```
 
 ## Building
