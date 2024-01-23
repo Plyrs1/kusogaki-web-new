@@ -12,16 +12,15 @@
     past: Array<EventData>;
   }
   export let data: PageData;
-  const splitData = data.eventData
-    .toSorted((a, b) => a.date - b.date)
-    .reduce<EventReducer>(
-      (carry, item) => {
-        if (item.date > new Date().getTime()) carry.upcoming.push(item);
-        else carry.past.push(item);
-        return carry;
-      },
-      { upcoming: [], past: [] }
-    );
+  data.eventData.sort((a, b) => a.date - b.date);
+  const splitData = data.eventData.reduce<EventReducer>(
+    (carry, item) => {
+      if (item.date > new Date().getTime()) carry.upcoming.push(item);
+      else carry.past.push(item);
+      return carry;
+    },
+    { upcoming: [], past: [] }
+  );
 </script>
 
 <!--
