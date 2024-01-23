@@ -2,7 +2,7 @@
   import type { EventData } from './event';
   export let data: EventData;
   const formatDate = (date: number) => {
-    const dateObj = new Date(date)
+    const dateObj = new Date(date);
     const ordinal = (day: number) => {
       if (day > 3 && day < 21) return 'th';
       switch (day % 10) {

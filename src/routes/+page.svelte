@@ -4,6 +4,7 @@
   import EventHighlight from '$lib/components/EventHighlight.svelte';
   import Hero from '$lib/components/Hero.svelte';
   import Meta from '$lib/components/Meta.svelte';
+
   import type { PageData } from './$types';
 
   interface EventReducer {
@@ -11,14 +12,16 @@
     past: Array<EventData>;
   }
   export let data: PageData;
-  const splitData = data.eventData.toSorted((a,b) => b.date - a.date).reduce<EventReducer>(
-    (carry, item) => {
-      if (item.date > new Date().getTime()) carry.upcoming.push(item);
-      else carry.past.push(item);
-      return carry;
-    },
-    { upcoming: [], past: [] }
-  );
+  const splitData = data.eventData
+    .toSorted((a, b) => a.date - b.date)
+    .reduce<EventReducer>(
+      (carry, item) => {
+        if (item.date > new Date().getTime()) carry.upcoming.push(item);
+        else carry.past.push(item);
+        return carry;
+      },
+      { upcoming: [], past: [] }
+    );
 </script>
 
 <!--
