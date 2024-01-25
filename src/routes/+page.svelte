@@ -28,7 +28,7 @@
 -->
 <Meta />
 <div class="container flex flex-col gap-4">
-  <Hero />
+  <Hero header="Welcome to|Kusogaki" />
   <EventHighlight data={splitData.upcoming.slice(0, 1)[0]} />
 
   <div class="mb-12 flex flex-col items-center rounded-2xl bg-kusogaki-dark">
