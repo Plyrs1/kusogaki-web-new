@@ -8,5 +8,13 @@
     "platformAutomerge": true
   },
   "schedule": ["after 11pm and before 5am"],
-  "timezone": "Asia/Jakarta"
+  "timezone": "Asia/Jakarta",
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch"
+    }
+  ]
 }
