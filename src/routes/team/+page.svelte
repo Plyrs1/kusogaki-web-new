@@ -15,7 +15,7 @@
         <div class=" rounded-md bg-kusogaki-indigo font-lemon-milk">
           <div class="grid aspect-square w-full overflow-hidden rounded-t-md">
             <a href={team.profileUrl} target="_blank" rel="noreferrer">
-              <img class="duration-300 hover:rotate-6 hover:scale-110" src={team.pic} alt="" />
+              <img class="h-full w-full duration-300 hover:rotate-6 hover:scale-110" src={team.pic} alt="" />
             </a>
           </div>
           <div class="m-2">
