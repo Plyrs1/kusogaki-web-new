@@ -1,9 +1,15 @@
 <script lang="ts">
+  import { slide } from 'svelte/transition';
+
   import { base } from '$app/paths';
   import { page } from '$app/stores';
 
   let currentPage: string | null = '/';
+  let innerWidth: number = 0;
+  let isNavbarOpen = true;
+
   $: currentPage = $page.route.id;
+  $: isNavbarOpen = innerWidth > 1024;
 
   interface NavigationItem {
     label: string;
@@ -13,36 +19,39 @@
     { label: 'Home', href: '/' },
     { label: 'Team', href: '/team' },
     { label: 'Events', href: '/events' },
-    { label: 'FAQ', href: '/faq' }
+    { label: 'FAQ', href: '/faq' },
+    { label: 'Login', href: '/#top' }
   ];
 </script>
 
-<nav class="z-10 w-full" id="top">
-  <span class="flex items-stretch justify-between gap-5 bg-kusogaki-indigo py-5 pl-16 pr-20 max-md:flex-wrap max-md:px-5">
-    <header class="my-auto text-center font-kozuka-gothic text-5xl text-white max-md:text-4xl">クソガキ</header>
-    <span
-      class="my-auto flex items-stretch justify-between gap-5 self-center text-center font-lemon-milk text-2xl uppercase text-white max-md:max-w-full max-md:flex-wrap"
-    >
-      <ul class="mt-32 flex flex-col lg:mt-0 lg:flex-row">
-        {#each navItems as navItem}
-          <li class="py-4">
-            <a href="{base}{navItem.href}" class="font-lemon-milk text-3xl text-white {currentPage === navItem.href ? 'active' : ''}"
-              >{navItem.label}</a
-            >
-          </li>
-        {/each}
-        <li class="py-4">
-          <a href="#top" class="font-lemon-milk text-3xl text-white">Login</a>
-        </li>
-      </ul>
-    </span>
-  </span>
+<svelte:window bind:innerWidth />
+<nav class="z-10 w-full bg-kusogaki-indigo" id="top">
+  <div class="container flex flex-col items-stretch gap-5 p-5 lg:flex-row lg:justify-between">
+    <header class="logo-style flex justify-between text-left font-inter text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+      <div class="logo-jp">クソガキ</div>
+      <div class="logo-en">/ku so ga ki/</div>
+      <div class="lg:hidden"><button on:click={() => (isNavbarOpen = !isNavbarOpen)}>=</button></div>
+    </header>
+    {#if isNavbarOpen}
+      <div
+        class="block items-stretch justify-between gap-2 self-center pt-4 text-center font-lemon-milk text-lg uppercase text-white sm:text-2xl lg:flex lg:pt-0"
+        transition:slide
+      >
+        <ul class="flex flex-col gap-2 lg:flex-row lg:gap-0">
+          {#each navItems as navItem}
+            <li>
+              <a href="{base}{navItem.href}" class="p-1 lg:p-4 {currentPage === navItem.href ? 'active' : ''}">{navItem.label}</a>
+            </li>
+          {/each}
+        </ul>
+      </div>
+    {/if}
+  </div>
 </nav>
 
 <style>
   a {
     position: relative;
-    padding: 1rem;
     z-index: 20;
   }
 
@@ -72,5 +81,21 @@
   a:hover::before {
     transform-origin: bottom;
     transform: scaleY(1);
+  }
+
+  .logo-style {
+    text-shadow: 4px 4px 8px rgba(22, 22, 22, 0.3);
+  }
+
+  .logo-style:hover .logo-jp {
+    display: none;
+  }
+
+  .logo-style .logo-en {
+    display: none;
+  }
+
+  .logo-style:hover .logo-en {
+    display: block;
   }
 </style>

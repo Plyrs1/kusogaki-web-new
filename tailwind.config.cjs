@@ -12,7 +12,8 @@ const config = {
       fontFamily: {
         sans: ['Monsterrat', ...defaultTheme.fontFamily.sans],
         'lemon-milk': ['Lemon\\ Milk'],
-        'kozuka-gothic': ['Kozuka\\ Gothic']
+        'kozuka-gothic': ['Kozuka\\ Gothic'],
+        inter: ['Inter']
       },
       colors: {
         kusogaki: {
