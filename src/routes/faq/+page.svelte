@@ -7,9 +7,9 @@
   export let data: PageData;
 </script>
 
-<div class="grid w-full place-items-center p-4">
+<div class="container flex flex-col">
   <Hero header="Frequently Asked|Question" />
-  <div class="container flex w-full flex-col place-items-center gap-4">
+  <div class="flex flex-col gap-4">
     {#each data.faqLists as faqList, index}
       <Accordion question={faqList.question} answer={faqList.answer} bind:currentFaq {index} />
     {/each}

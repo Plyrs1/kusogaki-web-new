@@ -6,8 +6,9 @@ interface PageData {
   name?: string;
   color?: string;
 }
+const isMobile: Writable<boolean> = writable(false);
 const isScrolled: Writable<boolean> = writable(false);
-const site: Writable<PageData> = writable({});
 const scrollOffset: Writable<number> = writable(0);
+const site: Writable<PageData> = writable({});
 
-export { isScrolled, scrollOffset, site };
+export { isMobile, isScrolled, scrollOffset, site };

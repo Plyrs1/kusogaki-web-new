@@ -5,21 +5,21 @@
   let [title, subtitle] = header.split('|');
 </script>
 
-<div class="mx-auto flex max-w-xl flex-col">
-  <header class="mt-24 self-center whitespace-nowrap text-center drop-shadow-[6px_6px_4px_rgba(0,0,0,0.9)]" role="heading" aria-level="1">
+<div class="mx-auto flex w-full max-w-xl flex-col">
+  <header class="mt-24 self-center text-center drop-shadow-[6px_6px_4px_rgba(0,0,0,0.9)]" role="heading" aria-level="1">
     {#if subtitle}
-      <p class="text-5xl text-white">{title}</p>
-      <p class="text-8xl text-kusogaki-indigo">{subtitle}</p>
+      <p class="text-4xl text-white lg:text-5xl">{title}</p>
+      <p class="text-7xl text-kusogaki-indigo lg:text-8xl">{subtitle}</p>
     {:else}
-      <p class="text-8xl text-kusogaki-indigo">{title}</p>
+      <p class="text-7xl text-kusogaki-indigo lg:text-8xl">{title}</p>
     {/if}
   </header>
-  <div class="mt-6 w-full text-center text-2xl text-white drop-shadow-[6px_6px_4px_rgba(0,0,0,0.9)]" aria-label="Motivational Text">
+  <div class="text-md mt-6 w-full text-center text-white drop-shadow-[6px_6px_4px_rgba(0,0,0,0.9)] lg:text-2xl" aria-label="Motivational Text">
     {content}
   </div>
   <a
     href="#top"
-    class="mb-12 mt-6 self-center rounded-xl bg-kusogaki-indigo px-6 py-1.5 text-2xl uppercase text-white max-md:mb-10 max-md:px-5"
+    class="text-md my-8 self-center rounded-xl bg-kusogaki-indigo px-6 py-1.5 uppercase text-white lg:text-2xl"
     role="button"
     aria-label="Learn More">Learn More</a
   >

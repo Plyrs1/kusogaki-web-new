@@ -20,12 +20,12 @@
   };
 </script>
 
-<div class="flex w-full flex-col items-stretch">
+<div class="flex w-full flex-col">
   <img alt="event" loading="lazy" srcset={data.image} class="aspect-[3.18] w-full rounded-md object-cover object-center" />
-  <div class="mt-1 overflow-ellipsis whitespace-nowrap text-center text-2xl uppercase text-kusogaki-purple">
+  <div class="text-xl uppercase text-kusogaki-purple md:text-2xl">
     {data.title}
   </div>
-  <div class="overflow-ellipsis whitespace-nowrap text-center text-sm uppercase text-neutral-300">
+  <div class="text-xs uppercase text-neutral-300 md:text-sm">
     {formatDate(data.date)}
   </div>
 </div>

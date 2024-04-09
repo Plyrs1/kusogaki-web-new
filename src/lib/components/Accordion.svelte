@@ -11,8 +11,8 @@
 </script>
 
 <div class="w-full bg-kusogaki-indigo {className} font-lemon-milk text-sm text-white md:text-lg">
-  <button type="button" class="flex w-full justify-between p-2 md:p-5" on:click={() => (currentFaq = index)}>
-    <span>{question}</span>
+  <button type="button" class="flex w-full justify-between p-2 md:p-5" on:click={() => (currentFaq = currentFaq === index ? null : index)}>
+    <span class="text-left">{question}</span>
     <svg
       class="h-6 w-6 {isCollapsed ? 'rotate-0' : 'rotate-180'} shrink-0 duration-300"
       fill="currentColor"

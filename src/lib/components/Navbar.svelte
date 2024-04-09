@@ -1,15 +1,25 @@
 <script lang="ts">
+  import { onDestroy, onMount } from 'svelte';
+  import type { Unsubscriber } from 'svelte/store';
   import { slide } from 'svelte/transition';
 
   import { base } from '$app/paths';
   import { page } from '$app/stores';
+  import { isMobile } from '$lib/stores/page';
 
   let currentPage: string | null = '/';
-  let innerWidth: number = 0;
   let isNavbarOpen = true;
 
   $: currentPage = $page.route.id;
-  $: isNavbarOpen = innerWidth > 1024;
+
+  // hacks to fix desktop navbar not showing in first page load
+  // original code:
+  // let unsubscribeIsMobile = isMobile.subscribe((value) => (isNavbarOpen = !value));
+  let unsubscribeIsMobile: Unsubscriber;
+  onMount(() => {
+    unsubscribeIsMobile = isMobile.subscribe((value) => (isNavbarOpen = !value));
+  });
+  onDestroy(() => unsubscribeIsMobile && unsubscribeIsMobile());
 
   interface NavigationItem {
     label: string;
@@ -24,8 +34,7 @@
   ];
 </script>
 
-<svelte:window bind:innerWidth />
-<nav class="z-10 w-full bg-kusogaki-indigo" id="top">
+<nav class="fixed z-10 w-full bg-kusogaki-indigo" id="top">
   <div class="container flex flex-col items-stretch gap-5 p-5 lg:flex-row lg:justify-between">
     <header class="logo-style flex justify-between text-left font-inter text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
       <div class="logo-jp">クソガキ</div>
@@ -33,14 +42,17 @@
       <div class="lg:hidden"><button on:click={() => (isNavbarOpen = !isNavbarOpen)}>=</button></div>
     </header>
     {#if isNavbarOpen}
-      <div
-        class="block items-stretch justify-between gap-2 self-center pt-4 text-center font-lemon-milk text-lg uppercase text-white sm:text-2xl lg:flex lg:pt-0"
-        transition:slide
-      >
+      <div class="gap-2 self-center pt-4 font-lemon-milk text-lg uppercase text-white sm:text-2xl lg:flex lg:pt-0" transition:slide>
         <ul class="flex flex-col gap-2 lg:flex-row lg:gap-0">
           {#each navItems as navItem}
             <li>
-              <a href="{base}{navItem.href}" class="p-1 lg:p-4 {currentPage === navItem.href ? 'active' : ''}">{navItem.label}</a>
+              <a
+                href="{base}{navItem.href}"
+                class="p-1 lg:p-4 {currentPage === navItem.href ? 'active' : ''}"
+                on:click={() => {
+                  if ($isMobile) isNavbarOpen = false;
+                }}>{navItem.label}</a
+              >
             </li>
           {/each}
         </ul>

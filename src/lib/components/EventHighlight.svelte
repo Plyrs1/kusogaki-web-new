@@ -31,7 +31,7 @@
 
 <div class="flex flex-col rounded-2xl bg-kusogaki-dark pb-6">
   <header
-    class="w-full items-stretch self-stretch rounded-t-2xl bg-kusogaki-indigo p-2 text-center text-6xl uppercase text-white"
+    class="w-full rounded-t-2xl bg-kusogaki-indigo p-2 text-center text-2xl uppercase text-white md:text-4xl lg:text-5xl"
     role="heading"
     aria-level="1"
   >
