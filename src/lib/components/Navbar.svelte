@@ -5,10 +5,10 @@
 
   import { base } from '$app/paths';
   import { page } from '$app/stores';
-  import { isMobile } from '$lib/stores/page';
+  import { isLoggedIn, isMobile } from '$lib/stores/page';
 
   let currentPage: string | null = '/';
-  let isNavbarOpen = true;
+  let isNavbarOpen = false;
 
   $: currentPage = $page.route.id;
 
@@ -29,8 +29,7 @@
     { label: 'Home', href: '/' },
     { label: 'Team', href: '/team' },
     { label: 'Events', href: '/events' },
-    { label: 'FAQ', href: '/faq' },
-    { label: 'Login', href: '/#top' }
+    { label: 'FAQ', href: '/faq' }
   ];
 </script>
 
@@ -55,6 +54,15 @@
               >
             </li>
           {/each}
+          <li>
+            <a
+              href={$isLoggedIn ? '/logout' : '/login'}
+              class="p-1 lg:p-4 {currentPage === '/login' ? 'active' : ''}"
+              on:click={() => {
+                if ($isMobile) isNavbarOpen = false;
+              }}>{$isLoggedIn ? 'Logout' : 'Login'}</a
+            >
+          </li>
         </ul>
       </div>
     {/if}

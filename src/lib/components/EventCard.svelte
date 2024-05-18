@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { EventData } from './event';
+  import type { EventData } from '$lib/types/event';
   export let data: EventData;
   const formatDate = (date: number) => {
     const dateObj = new Date(date);
@@ -18,10 +18,19 @@
     };
     return `${dateObj.toLocaleDateString('en-us', { day: 'numeric', month: 'long' })}${ordinal(dateObj.getDate())}`;
   };
+  const onImageError = (e: Event) => {
+    (e.target as HTMLImageElement).srcset = '/assets/images/640x214.svg';
+  };
 </script>
 
 <div class="flex w-full flex-col">
-  <img alt="event" loading="lazy" srcset={data.image} class="aspect-[3.18] w-full rounded-md object-cover object-center" />
+  <img
+    alt="event"
+    loading="lazy"
+    srcset={data.image ?? '/assets/images/640x214.svg'}
+    on:error={onImageError}
+    class="aspect-[3.18] w-full rounded-md object-cover object-center"
+  />
   <div class="text-xl uppercase text-kusogaki-purple md:text-2xl">
     {data.title}
   </div>

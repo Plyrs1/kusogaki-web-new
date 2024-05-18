@@ -1,9 +1,9 @@
 <script lang="ts">
   import { onDestroy } from 'svelte';
 
-  import type { EventData } from './event';
+  import type { EventData } from '$lib/types/event';
   export let data: EventData;
-  let countdown = new Date(data.date).getTime() - new Date().getTime();
+  let countdown = new Date(data?.date).getTime() - new Date().getTime();
   const pluralize = (day: number) => {
     return day > 1 ? 'days' : 'day';
   };
@@ -38,9 +38,14 @@
     NEXT EVENT IN {formatTime(countdown)}
   </header>
   <div class="overflow-clip p-4">
-    <img loading="lazy" srcset={data.image} alt="banner" class="aspect-[3.18] w-full rounded-md object-cover object-center" />
+    <img
+      loading="lazy"
+      srcset={data.image ?? '/assets/images/640x214.svg'}
+      alt="banner"
+      class="aspect-[3.18] w-full rounded-md object-cover object-center"
+    />
   </div>
-  <a href="#top" class="justify-center self-center rounded-xl bg-kusogaki-indigo px-4 py-1 text-center text-2xl uppercase text-white" role="button"
-    >Get Notified
+  <a href="#top" class="justify-center self-center rounded-xl bg-kusogaki-indigo px-4 py-1 text-center text-2xl uppercase text-white" role="button">
+    Get Notified
   </a>
 </div>
