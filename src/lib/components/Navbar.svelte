@@ -5,7 +5,10 @@
 
   import { base } from '$app/paths';
   import { page } from '$app/stores';
-  import { isLoggedIn, isMobile } from '$lib/stores/page';
+  import { isMobile } from '$lib/stores/page';
+  import type { NavigationItem } from '$lib/types/navigation';
+
+  import Avatar from './game/Avatar.svelte';
 
   let currentPage: string | null = '/';
   let isNavbarOpen = false;
@@ -21,11 +24,7 @@
   });
   onDestroy(() => unsubscribeIsMobile && unsubscribeIsMobile());
 
-  interface NavigationItem {
-    label: string;
-    href: string;
-  }
-  const navItems: Array<NavigationItem> = [
+  export let navItems: Array<NavigationItem> = [
     { label: 'Home', href: '/' },
     { label: 'Team', href: '/team' },
     { label: 'Events', href: '/events' },
@@ -42,7 +41,7 @@
     </header>
     {#if isNavbarOpen}
       <div class="gap-2 self-center pt-4 font-lemon-milk text-lg uppercase text-white sm:text-2xl lg:flex lg:pt-0" transition:slide>
-        <ul class="flex flex-col gap-2 lg:flex-row lg:gap-0">
+        <ul class="flex flex-col items-center gap-2 lg:flex-row lg:gap-0">
           {#each navItems as navItem}
             <li>
               <a
@@ -55,13 +54,7 @@
             </li>
           {/each}
           <li>
-            <a
-              href={$isLoggedIn ? '/logout' : '/login'}
-              class="p-1 lg:p-4 {currentPage === '/login' ? 'active' : ''}"
-              on:click={() => {
-                if ($isMobile) isNavbarOpen = false;
-              }}>{$isLoggedIn ? 'Logout' : 'Login'}</a
-            >
+            <Avatar />
           </li>
         </ul>
       </div>
