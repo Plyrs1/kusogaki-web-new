@@ -24,6 +24,6 @@
   };
 </script>
 
-<button class="justify-center self-center rounded-lg text-center uppercase {twJoin(btnSize[size], btnVariant[variant])}" onclick={click}>
+<button class="justify-center self-center rounded-lg text-center uppercase {twJoin(btnSize[size], btnVariant[variant])}" on:click={click}>
   {text}
 </button>
