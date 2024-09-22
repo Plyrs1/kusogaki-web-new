@@ -12,6 +12,7 @@
     "format": "eslint --fix . && prettier --write ."
   },
   "devDependencies": {
+    "@iconify/svelte": "^4.0.2",
     "@sveltejs/adapter-vercel": "^5.1.0",
     "@sveltejs/kit": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
@@ -40,6 +41,7 @@
   "type": "module",
   "dependencies": {
     "@supabase/ssr": "^0.3.0",
-    "@supabase/supabase-js": "^2.43.2"
+    "@supabase/supabase-js": "^2.43.2",
+    "carta-md": "^4.4.5"
   }
 }
